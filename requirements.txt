@@ -1,0 +1,6 @@
+pandas==2.3.3
+python-dotenv==1.2.2
+notebook==7.6.2
+ipykernel==7.1.0
+pydantic==2.12.5
+groq==1.6.0
