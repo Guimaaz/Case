@@ -1,0 +1,46 @@
+candidato: Gustavo Guimarães Rodrigues
+modelo_usado: openai/gpt-oss-120b
+provedor: groq
+horas_dedicadas: 4 
+
+nivel_1:
+  limpeza_dados:
+    status: completo
+    onde: "nivel_1/nivel_1.ipynb, células 3-9 (diagnóstico e tratamento)"
+    nota: "4 problemas identificados: tipagem da data, data ausente, moeda estrangeira e linha duplicada"
+  regras_pandas:
+    status: completo
+    onde: "nivel_1/nivel_1.ipynb, células 12-16"
+  validacao_regras:
+    status: completo
+    onde: "nivel_1/nivel_1.ipynb, células 18-21"
+    nota: "as duas regras validadas, cada uma com caso positivo e negativos próximos"
+  saida_estruturada:
+    status: completo
+    onde: "nivel_1/nivel_1.ipynb, células 25-28"
+    nota: "validação com Pydantic; a v1 do prompt falhou de verdade e o tratamento de erro foi exercitado"
+  comparacao_prompts:
+    status: completo
+    onde: "nivel_1/nivel_1.ipynb, células 28-30"
+
+nivel_2:
+  regras_em_escala:
+    status: nao_feito
+    plano: "docs/DECISOES.md#nivel-2"
+  ferramentas:
+    status: nao_feito
+    plano: "docs/DECISOES.md#nivel-2"
+  agente:
+    status: nao_feito
+    plano: "docs/DECISOES.md#nivel-2"
+  lote:
+    status: nao_feito
+    plano: "docs/DECISOES.md#nivel-2"
+  confronto:
+    status: nao_feito
+    plano: "docs/DECISOES.md#nivel-2"
+
+nivel_3:
+  trilha_escolhida: B
+  status: nao_feito
+  plano: "docs/DECISOES.md#nivel-3"
