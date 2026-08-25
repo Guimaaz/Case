@@ -1,0 +1,11 @@
+cliente_id,prosseguiu,prioridade,encerrado_em,ferramentas,nivel_risco,tokens,latencia_s
+CLI-029,True,alta,redator,"operacoes_do_dia, historico_cliente, perfil_canal",alto,7436,40.76
+CLI-017,True,alta,redator,"operacoes_do_dia, historico_cliente",alto,5599,61.59
+CLI-002,True,alta,redator,"operacoes_do_dia, historico_cliente",alto,5934,44.61
+CLI-003,True,media,redator,"operacoes_do_dia, historico_cliente",alto,5865,43.86
+CLI-014,True,alta,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",alto,6763,47.6
+CLI-023,True,media,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",medio,6688,49.17
+CLI-028,True,media,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",medio,6972,47.24
+CLI-013,True,alta,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",alto,6254,41.96
+CLI-005,True,media,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",medio,6526,61.69
+CLI-026,True,media,redator,"historico_cliente, operacoes_do_dia, operacoes_do_dia, operacoes_do_dia",medio,6140,42.67

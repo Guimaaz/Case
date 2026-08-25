@@ -1,0 +1,502 @@
+[
+  {
+    "cliente_id": "CLI-029",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-029",
+      "total_operacoes": 16,
+      "volume_total_brl": 191385.77,
+      "ticket_mediano_brl": 10337.49,
+      "regras_acionadas": {
+        "fracionamento": true,
+        "valor_atipico": false
+      },
+      "qtd_operacoes_sinalizadas": 4,
+      "dias_com_fracionamento": [
+        "2026-05-26"
+      ]
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "alta",
+      "motivo": "O cliente apresenta fracionamento de operações em 25% das transações, com volume total elevado e ticket mediano alto, indicando risco de estruturação.",
+      "focos": [
+        "detalhe do dia 2026-05-26",
+        "padrão de fracionamento nas operações",
+        "origem e destino dos fundos"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "operacoes_do_dia",
+        "historico_cliente",
+        "perfil_canal"
+      ],
+      "achados": "No dia 26 de maio 2026 o cliente CLI‑029 realizou quatro operações que totalizaram R$ 71 297,68. Todas foram de valores próximos (entre R$ 14 326,29 e R$ 19 418,96) e ocorreram em dois canais – TED (três operações) e PIX (uma operação) – o que caracteriza o padrão de fracionamento que havia sido sinalizado.\n\n**Detalhe das operações do dia 2026‑05‑26**\n\n| ID da operação | Valor (BRL) | Canal | Tipo | Contraparte |\n|----------------|-------------|-------|------|-------------|\n| OP‑00301 | 19 418,96 | TED | saque | Orion Trading SA |\n| OP‑00300 | 19 138,59 | TED | depósito | Solar Importação LTDA |\n| OP‑00299 | 14 326,29 | TED | transferência recebida | Rubi Importação ME |\n| OP‑00302 | 18 413,84 | PIX | depósito | Cristal Atacado ME |\n\n- Três operações foram realizadas via TED, representando a maior parte do volume do cliente (72,2 % das transações totais, segundo o perfil de canal).  \n- Uma operação foi feita via PIX, que corresponde a 10,9 % do volume total do cliente.  \n\n**Padrão de fracionamento**\n\n- O cliente tem 16 operações no período analisado (de 11 / 03 / 2026 a 26 / 05 / 2026), com ticket médio de R$ 11 961,61 e ticket mediano de R$ 10 337,49.  \n- No dia 26/05/2026, quatro operações foram executadas em sequência, todas com valores semelhantes (aproximadamente R$ 15 k‑19 k). Essa concentração de valores próximos em um único dia, distribuídos entre TED e PIX, corresponde ao comportamento que acionou a regra de fracionamento.  \n\n**Origem e destino dos fundos**\n\n- **Entradas (origem):**  \n  - Solar Importação LTDA (TED, depósito de R$ 19 138,59)  \n  - Rubi Importação ME (TED, transferência recebida de R$ 14 326,29)  \n  - Cristal Atacado ME (PIX, depósito de R$ 18 413,84)  \n\n- **Saída (destino):**  \n  - Orion Trading SA (TED, saque de R$ 19 418,96)  \n\nPortanto, no dia em questão o cliente recebeu recursos de três empresas distintas (duas via TED, uma via PIX) e, quase simultaneamente, enviou quase o mesmo montante para outra empresa (Orion Trading SA) via TED, configurando o padrão de fracionamento identificado."
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "estruturação",
+      "red_flags": [
+        "fracionamento de operações em 25% das transações",
+        "valores semelhantes entre R$14 326,29 e R$19 418,96 em múltiplas operações no mesmo dia",
+        "uso de múltiplos canais (TED e PIX) para movimentar fundos em sequência",
+        "saque quase simultâneo após depósitos de empresas distintas"
+      ],
+      "justificativa": "O cliente realizou quatro operações de valores próximos em um único dia, distribuídas entre TED e PIX, configurando o padrão de fracionamento. Essa prática, associada ao saque imediato de quase o mesmo montante, indica tentativa de estruturar o volume total para evitar detecção. O volume elevado e a concentração de transações sugerem risco alto de lavagem de dinheiro."
+    },
+    "encerrado_em": "redator",
+    "tokens": 7436,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 40.76
+  },
+  {
+    "cliente_id": "CLI-017",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-017",
+      "total_operacoes": 13,
+      "volume_total_brl": 121391.37,
+      "ticket_mediano_brl": 9593.32,
+      "regras_acionadas": {
+        "fracionamento": true,
+        "valor_atipico": false
+      },
+      "qtd_operacoes_sinalizadas": 4,
+      "dias_com_fracionamento": [
+        "2026-03-08"
+      ]
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "alta",
+      "motivo": "Regra de fracionamento acionada com 4 operações sinalizadas (30% das transações) e ticket médio elevado, indicando possível tentativa de burlar limites.",
+      "focos": [
+        "detalhe do dia 2026-03-08",
+        "análise de fracionamento",
+        "distribuição de valores por operação"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "operacoes_do_dia",
+        "historico_cliente"
+      ],
+      "achados": "No dia 08 de março de 2026 o cliente CLI‑017 realizou quatro operações, totalizando R$ 64 673,88. Cada operação ficou entre R$ 14 352,98 e R$ 18 761,22, com a maior operação (R$ 18 761,22) ocorrendo via TED como depósito para Lumen Comércio SA. As demais foram:  \n\n* OP‑00303 – R$ 14 352,98 – TED – saque – Lumen Indústria ME  \n* OP‑00305 – R$ 16 158,41 – PIX – pagamento – Rubi Transportes SA  \n* OP‑00306 – R$ 15 401,27 – PIX – transferência enviada – Boreal Comércio ME  \n\nA soma das quatro transações corresponde a 53 % do volume total do cliente (R$ 121 391,37) e a cada operação representa, individualmente, entre 11,8 % e 15,5 % do volume total. O ticket médio do cliente ao longo do período analisado (13 operações) é de R$ 9 337,80, enquanto o ticket mediano é de R$ 9 593,32. Todas as quatro operações do dia 08/03/2026 estão acima do ticket médio e do mediano, indicando que o cliente concentrou, em um único dia, valores significativamente superiores ao seu padrão habitual.\n\nEm termos de fracionamento, a regra foi acionada porque o cliente realizou múltiplas operações de valor próximo (entre R$ 14 k e R$ 19 k) em um curto intervalo de tempo, em vez de uma única operação maior. Não há indícios de valores atípicos fora do histórico do cliente, mas a concentração de quatro transações de alto valor no mesmo dia se destaca em relação ao padrão geral, onde a maior operação já registrada é exatamente R$ 18 761,22 (a mesma do depósito de 08/03/2026). A distribuição dos valores por operação naquele dia mostra uma uniformidade de valores elevados, reforçando a característica de fracionamento detectada."
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "fracionamento",
+      "red_flags": [
+        "Múltiplas operações de valor próximo em curto intervalo de tempo",
+        "Concentração de 53% do volume total em um único dia",
+        "Operações acima do ticket médio e mediano do cliente"
+      ],
+      "justificativa": "A concentração de quatro transações de R$14 k a R$19 k em um único dia representa 53 % do volume total do cliente, indicando tentativa de dividir valores em operações menores. Essa prática corresponde ao padrão de fracionamento, usado para driblar limites operacionais. Os valores estão acima do ticket médio e mediano, reforçando o desvio em relação ao comportamento habitual."
+    },
+    "encerrado_em": "redator",
+    "tokens": 5599,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 61.59
+  },
+  {
+    "cliente_id": "CLI-002",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-002",
+      "total_operacoes": 14,
+      "volume_total_brl": 107965.38,
+      "ticket_mediano_brl": 5448.6,
+      "regras_acionadas": {
+        "fracionamento": true,
+        "valor_atipico": false
+      },
+      "qtd_operacoes_sinalizadas": 4,
+      "dias_com_fracionamento": [
+        "2026-05-01"
+      ]
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "alta",
+      "motivo": "Fracionamento detectado em 4 operações (28% das transações) com ticket mediano alto e volume total significativo, indicando risco de estruturação",
+      "focos": [
+        "detalhe das operações de fracionamento",
+        "análise de padrão de ticket",
+        "distribuição por dia"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "operacoes_do_dia",
+        "historico_cliente"
+      ],
+      "achados": "No dia 2026‑05‑01, quando a regra de fracionamento foi acionada, o cliente CLI‑002 realizou quatro operações, totalizando R$ 64 723,09, o que corresponde a cerca de 60 % do volume total de R$ 107 965,38 registrado no período analisado (02/03/2026 a 20/05/2026). Essas quatro transações representam 28,6 % do número total de operações (14) do cliente.\n\n**Detalhe das operações desse dia**\n\n| ID da operação | Valor (R$) | Canal | Tipo | Contraparte |\n|----------------|------------|-------|------|-------------|\n| OP‑00292 | 14 742,36 | TED | transferência recebida | Boreal Comércio ME |\n| OP‑00293 | 15 186,39 | PIX | depósito | Mirante Consultoria SA |\n| OP‑00295 | 17 998,60 | PIX | transferência recebida | Tijuca Transportes ME |\n| OP‑00294 | 16 795,74 | PIX | depósito | Solar Atacado SA |\n\nA maior operação do cliente (R$ 17 998,60) ocorreu exatamente nesse dia, coincidindo com o valor máximo registrado no histórico. As demais operações do cliente têm ticket médio de R$ 7 711,81 e ticket mediano de R$ 5 448,60, indicando que os valores das quatro transações de 05/01/2026 estão bem acima da mediana e acima da média geral.\n\n**Padrão de ticket**\n\n- Ticket mediano geral: R$ 5 448,60.  \n- Ticket médio geral: R$ 7 711,81.  \n- Valores das quatro operações do dia de fracionamento variam entre R$ 14 742,36 e R$ 17 998,60, quase duas a três vezes o ticket mediano e quase o dobro do ticket médio.\n\n**Distribuição por dia (visão resumida)**  \n\n- Total de operações no período: 14.  \n- Operações no dia de fracionamento (2026‑05‑01): 4 (≈ 28,6 % do total).  \n- Volume no dia de fracionamento: R$ 64 723,09 (≈ 60 % do volume total).  \n\nEsses dados mostram que o dia 2026‑05‑01 concentra uma parcela significativa tanto em número de operações quanto em volume financeiro, com valores bem acima do padrão de ticket do cliente."
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "estruturação",
+      "red_flags": [
+        "fracionamento de 4 operações concentradas em um único dia",
+        "volume de R$64.723,09 representando 60% do total",
+        "valores das transações 2 a 3 vezes acima do ticket mediano"
+      ],
+      "justificativa": "As quatro operações realizadas em 01/05/2026 concentram 28,6% do número total de transações e 60% do volume total, caracterizando fracionamento. Os valores (R$14.742,36 a R$17.998,60) estão significativamente acima da mediana e da média, indicando tentativa de estruturação para evitar detecção. Esse padrão justifica a classificação de risco alto."
+    },
+    "encerrado_em": "redator",
+    "tokens": 5934,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 44.61
+  },
+  {
+    "cliente_id": "CLI-003",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-003",
+      "total_operacoes": 14,
+      "volume_total_brl": 102241.09,
+      "ticket_mediano_brl": 4090.03,
+      "regras_acionadas": {
+        "fracionamento": true,
+        "valor_atipico": false
+      },
+      "qtd_operacoes_sinalizadas": 4,
+      "dias_com_fracionamento": [
+        "2026-05-02"
+      ]
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "media",
+      "motivo": "O cliente apresenta fracionamento em 4 das 14 operações, indicando possível estruturação de valores, embora não haja valor atípico detectado; o volume total e ticket mediano elevados reforçam a necessidade de revisão.",
+      "focos": [
+        "dias com fracionamento",
+        "detalhes das operações sinalizadas",
+        "análise de padrão de ticket"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "operacoes_do_dia",
+        "historico_cliente"
+      ],
+      "achados": "No dia 2026‑05‑02, data em que a regra de fracionamento foi acionada para o cliente CLI‑003, foram registradas quatro operações que somam R$ 50 846,72, representando quase 50 % do volume total de R$ 102 241,09 acumulado no período analisado (02/03/2026 a 28/05/2026).\n\n**Detalhes das operações sinalizadas**\n\n| ID da operação | Valor (BRL) | Canal | Tipo | Contraparte |\n|----------------|-------------|-------|------|-------------|\n| OP‑00298 | 18 631,47 | PIX | transferência enviada | Orion Importação LTDA |\n| OP‑00296 | 14 562,44 | TED | depósito | Aurora Serviços SA |\n| OP‑00028 | 1 509,47 | Cartão | transferência recebida | Boreal Varejo ME |\n| OP‑00297 | 16 143,34 | TED | pagamento | Solar Atacado SA |\n\nA maior operação do cliente (R$ 18 631,47) ocorre exatamente neste dia, e três das quatro transações ultrapassam R$ 14 000, valores muito superiores ao ticket mediano do cliente (R$ 4 090,03) e ao ticket médio (R$ 7 302,93). Apenas uma operação (R$ 1 509,47) está próxima da faixa típica de ticket.\n\n**Análise de padrão de ticket**\n\n- **Ticket mediano geral:** R$ 4 090,03  \n- **Ticket médio geral:** R$ 7 302,93  \n- **Maior operação geral:** R$ 18 631,47 (presente no dia de fracionamento)  \n- **Menor operação geral:** R$ 1 063,54  \n\nNo dia em que o fracionamento foi detectado, três operações (≈ 84 % do volume daquele dia) apresentam tickets que excedem em mais de duas vezes o ticket médio e quase cinco vezes o ticket mediano. Essa concentração de valores elevados em um único dia, distribuídos por diferentes canais (PIX, TED e Cartão), indica que o cliente pode estar dividindo um montante maior em múltiplas transações para evitar limites ou monitoramento.\n\nEm resumo, o foco do triador – “dias com fracionamento”, “detalhes das operações sinalizadas” e “análise de padrão de ticket” – revela que o dia 2026‑05‑02 concentra a maior parte das operações de alto valor do cliente, com tickets muito acima da média histórica, configurando o padrão típico de fracionamento."
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "estruturação",
+      "red_flags": [
+        "fracionamento",
+        "valores acima do ticket médio e mediano",
+        "concentração de alto valor em um único dia",
+        "uso de múltiplos canais"
+      ],
+      "justificativa": "O cliente realizou quatro operações no mesmo dia, totalizando quase 50% do volume total, o que caracteriza fracionamento. Três dessas transações ultrapassam duas vezes o ticket médio e quase cinco vezes o ticket mediano, indicando tentativa de dividir montante elevado. A distribuição das operações por diferentes canais (PIX, TED e Cartão) reforça o padrão de estruturação para evitar limites de monitoramento."
+    },
+    "encerrado_em": "redator",
+    "tokens": 5865,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 43.86
+  },
+  {
+    "cliente_id": "CLI-014",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-014",
+      "total_operacoes": 11,
+      "volume_total_brl": 80629.99,
+      "ticket_mediano_brl": 2308.41,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 3,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "alta",
+      "motivo": "Valor atípico detectado em 3 das 11 operações, representando volume significativo e ticket mediano elevado.",
+      "focos": [
+        "operações sinalizadas",
+        "distribuição de valores",
+        "padrões de ticket"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "nenhuma identificada",
+      "red_flags": [
+        "valor atípico",
+        "ticket mediano elevado",
+        "volume significativo"
+      ],
+      "justificativa": "O volume total e o ticket mediano são elevados e três operações apresentam valores atípicos, indicando risco de lavagem de dinheiro. Contudo, não há indícios claros de uma tipologia específica, como fracionamento ou uso de contas de fachada."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6763,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 47.6
+  },
+  {
+    "cliente_id": "CLI-023",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-023",
+      "total_operacoes": 12,
+      "volume_total_brl": 148535.02,
+      "ticket_mediano_brl": 3241.16,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 2,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "media",
+      "motivo": "Valor atípico detectado em duas operações, representando 16% do total, com volume elevado e ticket mediano alto",
+      "focos": [
+        "análise dos valores atípicos",
+        "comparação com histórico do cliente"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor atípico em duas operações representando 16% do total",
+        "volume total elevado (R$148.535,02)",
+        "ticket mediano alto (R$3.241,16)"
+      ],
+      "justificativa": "As duas operações sinalizadas apresentam valores atípicos que correspondem a 16% do volume total, indicando concentração incomum de recursos. O volume total elevado e o ticket mediano acima da média reforçam a suspeita de movimentação atípica, justificando a classificação como risco médio."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6688,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 49.17
+  },
+  {
+    "cliente_id": "CLI-028",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-028",
+      "total_operacoes": 12,
+      "volume_total_brl": 88750.8,
+      "ticket_mediano_brl": 4430.25,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 2,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "media",
+      "motivo": "Regra de valor atípico acionada e 2 das 12 operações (≈17%) foram sinalizadas, com volume total elevado, justificando análise mais detalhada",
+      "focos": [
+        "operações sinalizadas",
+        "comparação de tickets com histórico",
+        "origem dos valores atípicos"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor atípico acionado",
+        "volume total elevado",
+        "2 das 12 operações sinalizadas (~17%)"
+      ],
+      "justificativa": "A regra de valor atípico foi acionada, indicando transações fora do padrão histórico. O volume total de R$88.750,8 e a presença de 2 operações sinalizadas representam um comportamento incomum que pode indicar tentativa de integração de recursos ilícitos. Embora não haja indícios de fracionamento, os sinais apontam para a tipologia de valor atípico, justificando risco médio."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6972,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 47.24
+  },
+  {
+    "cliente_id": "CLI-013",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-013",
+      "total_operacoes": 10,
+      "volume_total_brl": 81730.99,
+      "ticket_mediano_brl": 3146.22,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 2,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "alta",
+      "motivo": "Valor atípico detectado em 2 das 10 operações, representando volume significativo e ticket mediano elevado",
+      "focos": [
+        "operações sinalizadas",
+        "comparação do ticket mediano com histórico",
+        "investigar origem dos valores atípicos"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor atípico em 2 operações",
+        "ticket mediano elevado"
+      ],
+      "justificativa": "Dois das dez operações apresentam valores atípicos, representando volume significativo e ticket mediano acima da média histórica. Esse padrão indica possível tentativa de lavagem de dinheiro por meio de transações de valor atípico, justificando a classificação de risco alto."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6254,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 41.96
+  },
+  {
+    "cliente_id": "CLI-005",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-005",
+      "total_operacoes": 11,
+      "volume_total_brl": 64742.66,
+      "ticket_mediano_brl": 2144.18,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 2,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "media",
+      "motivo": "Regra de valor atípico acionada em duas das 11 operações, indicando possíveis irregularidades apesar de não haver fracionamento; volume total e ticket mediano elevados justificam análise mais detalhada.",
+      "focos": [
+        "operações sinalizadas",
+        "análise de valor atípico",
+        "comparação com histórico do cliente"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "Regra de valor atípico acionada em duas das 11 operações",
+        "ticket mediano elevado (R$ 2.144,18)",
+        "volume total elevado (R$ 64.742,66)"
+      ],
+      "justificativa": "A ativação da regra de valor atípico em duas transações indica movimentações fora do padrão do cliente. O ticket mediano e o volume total são altos para o perfil, sugerindo possível tentativa de lavagem por meio de valores atípicos. Não há indícios de fracionamento, mas a concentração de valores justifica atenção."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6526,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 61.69
+  },
+  {
+    "cliente_id": "CLI-026",
+    "modelo": "openai/gpt-oss-120b",
+    "resumo": {
+      "cliente_id": "CLI-026",
+      "total_operacoes": 12,
+      "volume_total_brl": 54729.28,
+      "ticket_mediano_brl": 2032.93,
+      "regras_acionadas": {
+        "fracionamento": false,
+        "valor_atipico": true
+      },
+      "qtd_operacoes_sinalizadas": 2,
+      "dias_com_fracionamento": []
+    },
+    "triagem": {
+      "prosseguir": true,
+      "prioridade": "media",
+      "motivo": "Regra de valor atípico acionada com 2 das 12 operações sinalizadas e volume total elevado, indicando possíveis transações fora do padrão",
+      "focos": [
+        "operações sinalizadas",
+        "comparação do ticket com histórico do cliente",
+        "origem e destino dos valores"
+      ]
+    },
+    "investigacao": {
+      "ferramentas": [
+        "historico_cliente",
+        "operacoes_do_dia",
+        "operacoes_do_dia",
+        "operacoes_do_dia"
+      ],
+      "achados": ""
+    },
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "nenhuma identificada",
+      "red_flags": [
+        "valor atípico",
+        "volume total elevado"
+      ],
+      "justificativa": "A regra de valor atípico foi acionada em 2 das 12 operações, indicando desvios do padrão histórico do cliente. O volume total de R$54.729,28 é elevado para a quantidade de operações, justificando a classificação de risco médio."
+    },
+    "encerrado_em": "redator",
+    "tokens": 6140,
+    "erro": null,
+    "do_cache": false,
+    "latencia_s": 42.67
+  }
+]
