@@ -59,7 +59,7 @@ Escrevi o tratamento e as regras diretamente no notebook
 
 **O que aconteceu na prática:** extraí as funções para nivel_2/pipeline.py no
 início do Nível 2, e o custo foi baixo porque a lógica já estava correta e testada.
-Ainda assim, o notebook do Nível 1 mantém sua própria cópia do código — as duas
+Ainda assim, o notebook do Nível 1 mantém sua própria cópia do código, as duas
 implementações podem divergir se uma for alterada. Começar pelo módulo, com o
 notebook importando dele, teria evitado essa duplicação
 
@@ -227,20 +227,48 @@ seria o que de fato colocaria isso na mesa de triagem
 
 ## Nivel 3, trilha escolhida
 
-**Trilha B, servidor MCP local.** Não implementado
+**Implementei a trilha A - fluxo multiagente.** Código em nivel_3/fluxo.py,
+diagrama em [ARQUITETURA.md](ARQUITETURA.md)
 
-Escolhi essa trilha porque as ferramentas do Nível 2 já são funções puras e sem
-estado, o que as torna diretamente expostáveis. O trabalho seria de protocolo, não
-de lógica
+Havia planejado a trilha B. Ao avaliar o tempo disponível, optei pela A por
+reaproveitar integralmente as ferramentas e o loop de tool calling do Nível 2, o
+trabalho ficou restrito a encadear três papéis sobre um estado compartilhado, sem
+introduzir protocolo nem biblioteca nova. A B exigiria aprender o SDK do MCP e
+depurar comunicação por stdio, o que não cabia com segurança na janela disponível
 
-Exporia as três funções via stdio, com schema de entrada declarado por ferramenta,
-e faria o agente consumi-las por MCP em vez de import direto. O ganho concreto:
-as mesmas ferramentas passariam a ser utilizáveis por qualquer cliente MCP sem
-acoplamento ao meu código, outro agente, ou um analista usando um cliente MCP
-diretamente
+Resultado: os 10 clientes do top passaram pelo fluxo, com o Triador definindo
+prioridade e focos, o Investigador consultando de 2 a 4 ferramentas conforme o
+caso, e os 10 pareceres validando no schema. A condição de parada foi verificada
+com o CLI-012, arquivado pelo Triador sem acionar os demais papéis
 
-**Como validaria:** subir o servidor, listar as ferramentas pelo protocolo,
-chamar cada uma com um cliente_id conhecido e conferir que a resposta é idêntica
-à da chamada por import direto. Se divergir, o problema está na serialização
+Uma limitação honesta: nos 10 do top, o Triador encaminhou todos. Isso é coerente, são os clientes mais sinalizados da base, mas significa que a seletividade do
+Triador não foi exercitada em escala. Para medir isso de fato, eu rodaria o fluxo
+sobre os 30 clientes e verificaria se a taxa de arquivamento acompanha a ausência
+de flags
+
+**A trilha B fica como próximo passo.** O plano original segue abaixo
+
+### Trilha B, servidor MCP local (planejado)
+
+Escolhi originalmente essa trilha porque as ferramentas do Nível 2 já são funções
+puras e sem estado, o que as torna diretamente expostáveis. O trabalho seria de
+protocolo, não de lógica
+
+Exporia historico_cliente, operacoes_do_dia e perfil_canal via stdio, com
+schema de entrada declarado por ferramenta, e faria o agente consumi-las por MCP
+em vez de import direto. O ganho concreto: as mesmas ferramentas passariam a ser
+utilizáveis por qualquer cliente MCP sem acoplamento ao meu código, outro agente,
+ou um analista usando um cliente MCP diretamente
+
+O ponto de atenção seria o estado. Hoje as ferramentas guardam a base num módulo
+(tools.usar_base(df)), o que funciona porque tudo roda no mesmo processo. Como
+servidor, a base precisaria ser carregada na inicialização do processo do servidor,
+e o ciclo de vida dela passaria a ser responsabilidade dele
+
+**Como validaria:** subir o servidor, listar as ferramentas pelo protocolo, chamar
+cada uma com um cliente_id conhecido e conferir que a resposta é byte a byte
+idêntica à da chamada por import direto. Se divergir, o problema está na
+serialização, que é exatamente o risco de trocar chamada de função por protocolo
+
 
 

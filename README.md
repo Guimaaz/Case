@@ -88,3 +88,23 @@ Toda contagem, soma, mediana e comparação com limiar é feita em pandas. A LLM
 recebe um dossiê com os números já calculados e é responsável apenas por
 interpretar o padrão, nomear a tipologia e redigir o parecer. Nenhuma decisão
 numérica é delegada ao modelo.
+
+### Nível 3 — completo (trilha A)
+
+Fluxo multiagente em `nivel_3/fluxo.py`: **Triador** decide se o caso segue, com
+que prioridade e quais focos investigar; **Investigador** consulta as ferramentas
+conforme esses focos; **Redator** produz o parecer estruturado. Um estado
+compartilhado atravessa os três papéis, e o Triador pode encerrar o fluxo antes
+das etapas seguintes.
+
+Nos 10 clientes do top, o Investigador consultou de 2 a 4 ferramentas conforme o
+caso e os 10 pareceres validaram no schema. A condição de parada foi verificada
+com o `CLI-012`, que não aciona nenhuma regra e foi arquivado pelo Triador sem
+acionar os demais papéis.
+
+Diagrama e detalhes em [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md). Resultados em
+`outputs/fluxo_multiagente.json` e `outputs/fluxo_multiagente.csv`.
+
+A trilha B (servidor MCP) fica planejada em
+[`docs/DECISOES.md`](docs/DECISOES.md#nivel-3-trilha-escolhida).
+

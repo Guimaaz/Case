@@ -1,5 +1,6 @@
 candidato: Gustavo Guimarães Rodrigues
-modelo_usado: "openai/gpt-oss-120b (nivel 1) e openai/gpt-oss-20b (lote do nivel 2)"
+modelo_usado: "openai/gpt-oss-120b (niveis 1 e 3) e openai/gpt-oss-20b (lote do nivel 2)"
+
 provedor: groq
 horas_dedicadas: 7
 
@@ -45,6 +46,7 @@ nivel_2:
 
 
 nivel_3:
-  trilha_escolhida: B
-  status: nao_feito
-  plano: "docs/DECISOES.md#nivel-3-trilha-escolhida"
+  trilha_escolhida: A
+  status: completo
+  onde: "nivel_3/fluxo.py; diagrama em docs/ARQUITETURA.md; saidas em outputs/fluxo_multiagente.json e outputs/fluxo_multiagente.csv"
+  nota: "havia declarado a trilha B; troquei para a A por reaproveitar as ferramentas e o tool calling do nivel 2. Plano da B mantido em docs/DECISOES.md#nivel-3-trilha-escolhida"
