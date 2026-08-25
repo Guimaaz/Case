@@ -55,10 +55,14 @@ mediana, a operação anômala não move a régua contra a qual é medida
 
 ### Lógica no notebook, extração adiada
 
-Escrevi o tratamento e as regras diretamente no notebook. Para o Nível 2 isso
-significa extrair as funções para um módulo importável, trabalho que teria sido
-evitado se eu tivesse começado por src/pipeline.py, com o notebook importando e
-narrando
+Escrevi o tratamento e as regras diretamente no notebook
+
+**O que aconteceu na prática:** extraí as funções para nivel_2/pipeline.py no
+início do Nível 2, e o custo foi baixo porque a lógica já estava correta e testada.
+Ainda assim, o notebook do Nível 1 mantém sua própria cópia do código — as duas
+implementações podem divergir se uma for alterada. Começar pelo módulo, com o
+notebook importando dele, teria evitado essa duplicação
+
 
 **O que faria diferente desde o começo:** definir de saída funções puras
 (carregar, limpar, normalizar_brl, regra_fracionamento,
@@ -123,47 +127,103 @@ Mesmo com temperature=0, execuções distintas podem divergir. As saídas
 commitadas são de uma execução específica. Em produção, o parecer precisaria ser
 versionado junto com o modelo, o prompt e o dossiê que o originou
 
-### Sem cache de respostas
+### O cache não expira
 
-Cada execução completa do notebook refaz três chamadas à API. Numa cota gratuita
-com limite por minuto, isso é desperdício e ponto de falha
+Implementei cache em disco no Nível 2, indexado por (modelo, dossiê). Ele resolve o
+custo de reexecução, mas não tem invalidação: se o prompt mudar, a chave continua a
+mesma e o resultado antigo volta silenciosamente. Em uso real, a chave precisaria
+incluir também a versão do prompt
 
-## Nivel 2, o que faria
 
-Não implementado no momento desta escrita. Plano:
+## Confronto regra x agente
 
-**Regras em escala.** Extrair as funções do notebook para um módulo importável e
-aplicá-las a dados_nivel_2.json. Os quatro problemas de qualidade são os mesmos,
-em maior número, o tratamento é idêntico. O top 10 sai de um groupby por
-cliente contando sinalizações, com volume total como desempate
+**Critério.** O nível esperado deriva de quantas regras o cliente acionou: duas
+regras → "alto", uma → "medio", nenhuma → "baixo". Escolhi um critério simples de
+propósito, espelhando a simplicidade das próprias regras
 
-**Ferramentas.** historico_cliente, operacoes_do_dia e perfil_canal como
-funções puras sobre o DataFrame já tratado, cada uma devolvendo dicionário
-serializável. Elas não decidem nada, apenas recortam e agregam
+**Resultado: 80% de concordância** (8/10), com duas divergências, ambas na mesma
+direção, o agente escalou de "medio" para "alto"
 
-**Agente.** O ponto que separa agente de script é a decisão de *quais* ferramentas
-chamar. Faria com tool calling nativo do SDK: o modelo recebe o dossiê inicial e
-as descrições das ferramentas, e decide o que consultar. Um cliente sinalizado por
-fracionamento leva naturalmente a operacoes_do_dia na data do alerta; um cliente
-sinalizado por valor atípico leva a historico_cliente para contextualizar a
-mediana. Registraria quais ferramentas cada caso acionou, é a evidência de que
-houve decisão, e não roteiro fixo
+### A primeira limitação é do critério, não do agente
 
-**Lote e custo.** Cache em disco indexado pelo hash do dossiê, para reexecutar o
-notebook sem repetir chamadas. Custo e latência por chamada num DataFrame,
-agregados ao final
+Os 10 clientes do top acionaram exatamente uma regra cada. Isso significa que
+o critério previu "medio" para todos os 10, e a taxa de 80% mede apenas quantas
+vezes o agente também disse "medio". O critério não discrimina nada nesta amostra:
+ele nunca produz "alto" nem "baixo" aqui. A métrica, isolada, não diz quase nada
 
-**Confronto.** Critério: cliente sinalizado pelas duas regras deveria sair como
-"alto"; por uma, "medio"; por nenhuma, "baixo". Reportaria a taxa de concordância,
-mas o valor está nas divergências. Como as regras são deliberadamente simples,
-espero falsos positivos, e um agente que discorde com justificativa ancorada nos
-dados pode estar certo. Classificaria cada divergência em "agente certo", "regra
-certa" ou "indeterminado", com uma frase de análise em cada
+### As duas divergências
 
-**Como validaria.** Casos-teste construídos à mão com resultado conhecido:
-um fracionamento clássico, um caso na borda do limiar, um cliente de alto volume
-sem padrão suspeito. Se o agente classificar os três corretamente, há evidência de
-que ele interpreta em vez de repetir a regra
+CLI-017 e CLI-002 foram sinalizados por fracionamento, consultaram
+operacoes_do_dia, viram o detalhe e escalaram
+
+Considero o agente mais certo que a regra nos dois casos, por um motivo que o
+critério ignora: ele conta regras, mas não pesa qual regra. Fracionamento e
+valor atípico não são equivalentes. Um valor atípico pode ter explicação trivial, a venda de um bem, um recebimento sazonal. Já 4 operações no mesmo dia, todas logo
+abaixo de um limiar de reporte, é um padrão que exige intenção. Não se fraciona
+por acaso
+
+O agente enxergou isso porque foi olhar o dia; a regra não enxerga porque só
+pergunta "acionou ou não"
+
+### Mas o agente acertou pelo motivo parcialmente errado
+
+A justificativa do CLI-002 afirma que "o uso de canais eletrônicos (Pix e TED)
+facilita a movimentação rápida e pode reduzir a rastreabilidade". Isso está
+invertido: Pix e TED são mais rastreáveis que espécie, e o próprio dado
+disponível permitiria notar isso. O modelo produziu um indício plausível ao ouvido
+mas incorreto no mérito
+
+A conclusão sobreviveu porque o argumento principal (concentração de 60% do
+volume em um único dia) se sustenta sozinho. Mas o episódio mostra por que o
+parecer da LLM precisa passar por analista humano: o texto é convincente
+independentemente de estar certo, e uma red flag errada num relatório de PLD pode
+direcionar uma investigação para o lado errado
+
+### O que eu mudaria no critério
+
+Pesar as regras em vez de contá-las: fracionamento sozinho já indicaria "alto",
+por implicar intenção, enquanto valor atípico sozinho ficaria em "medio". Com esse
+critério a concordância neste lote subiria para 100%, mas isso seria ajustar a
+régua ao resultado observado, e eu preciso de mais casos antes de afirmar que a
+regra nova é melhor e não apenas ajustada a esta amostra
+
+
+
+## O que faria com mais tempo
+
+**Fracionamento em janela móvel.** A Regra 1 olha um único dia. Trocaria por uma
+janela deslizante de N dias, com N configurável, e reportaria a janela que
+disparou. O padrão real raramente se concentra em 24 horas
+
+**Regra de proximidade de limiar.** O indício mais forte que encontrei nos dois
+lotes, valores agrupados logo abaixo de R$ 20.000, não é capturado por nenhuma
+regra atual. Mediria a distância relativa de cada operação ao limiar e sinalizaria
+concentração anormal na faixa de 85% a 99% dele. Validaria comparando a
+distribuição dos clientes sinalizados contra a dos demais: se a diferença não for
+visível num histograma, a regra não presta
+
+**Peso por tipo de regra no confronto.** O critério atual conta regras acionadas
+sem distinguir qual. Fracionamento implica intenção; valor atípico pode ter
+explicação trivial. Testaria um critério ponderado, mas em amostra separada da que
+usei para observar as divergências, ajustar a régua depois de ver o resultado é
+sobreajuste, não melhoria
+
+**Chamadas em paralelo.** O lote é sequencial e leva 46s por cliente. Com
+asyncio e controle de taxa, os 30 clientes da base rodariam em uma fração do
+tempo. Não fiz porque a camada gratuita limita requisições por minuto e o ganho
+seria anulado
+
+**Avaliação do agente com casos-teste.** Hoje eu observo que ele escolhe
+ferramentas coerentes, mas não meço isso. Construiria um conjunto pequeno de casos
+com resultado conhecido, um fracionamento clássico, um caso na borda do limiar,
+um cliente de alto volume sem padrão suspeito, e verificaria se ele classifica os
+três corretamente e consulta as ferramentas esperadas. Sem isso, "o agente decide
+bem" é impressão, não evidência
+
+**Painel para o analista.** O parecer hoje sai em JSON. Uma interface listando os
+clientes sinalizados, com o parecer e as operações que o motivaram lado a lado,
+seria o que de fato colocaria isso na mesa de triagem
+
 
 ## Nivel 3, trilha escolhida
 
@@ -182,3 +242,5 @@ diretamente
 **Como validaria:** subir o servidor, listar as ferramentas pelo protocolo,
 chamar cada uma com um cliente_id conhecido e conferir que a resposta é idêntica
 à da chamada por import direto. Se divergir, o problema está na serialização
+
+

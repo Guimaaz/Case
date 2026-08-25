@@ -56,15 +56,31 @@ prompt: a minimalista falhou na validação (devolveu `"Alto"` em vez de `"alto"
 alucinou um indício inexistente; a estruturada validou e custou apenas 5% mais em
 tokens.
 
-### Nível 2 — não implementado
+### Nível 2 — completo
 
-Plano detalhado em
-[`docs/DECISOES.md`](docs/DECISOES.md#nivel-2-o-que-faria).
+**Regras em escala.** As funções de tratamento e as duas regras foram extraídas do
+notebook para `nivel_2/pipeline.py` e aplicadas à base de 322 operações. Após a
+limpeza: 317 operações, 30 clientes, 5 duplicatas removidas, 7 conversões de USD e
+6 operações sem data. 16 operações sinalizadas por fracionamento e 21 por valor
+atípico.
 
-### Nível 3 — não implementado
+**Ferramentas e agente.** Três ferramentas de consulta em `nivel_2/tools.py`, e um
+agente em `nivel_2/agente.py` que decide quais chamar via tool calling
+(`tool_choice="auto"`). A decisão é observável: clientes sinalizados por
+fracionamento levaram o agente a `operacoes_do_dia`, os sinalizados por valor
+atípico a `historico_cliente`, e em dois casos ele concluiu que o resumo inicial
+bastava e não consultou nada. A coluna `ferramentas` de
+`outputs/metricas_lote.csv` registra isso caso a caso.
 
-Trilha B (servidor MCP local). Plano em
-[`docs/DECISOES.md`](docs/DECISOES.md#nivel-3-trilha-escolhida).
+**Lote.** 10 clientes processados, 10 pareceres válidos no schema. 69.139 tokens no
+total, 46,3s de latência média por caso. Resultados em `outputs/pareceres.json`,
+métricas em `outputs/metricas_lote.csv`.
+
+**Confronto.** 80% de concordância entre o risco do agente e o esperado pelas
+regras. As duas divergências foram escalações em casos de fracionamento, e estão
+analisadas em [`docs/DECISOES.md`](docs/DECISOES.md#confronto-regra-x-agente).
+Resultado em `outputs/confronto.csv`.
+
 
 ## Separação entre regra e LLM
 

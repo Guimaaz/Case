@@ -1,7 +1,8 @@
 candidato: Gustavo Guimarães Rodrigues
-modelo_usado: openai/gpt-oss-120b
+modelo_usado: "openai/gpt-oss-120b (nivel 1) e openai/gpt-oss-20b (lote do nivel 2)"
 provedor: groq
-horas_dedicadas: 5.5 
+horas_dedicadas: 7
+
 
 nivel_1:
   limpeza_dados:
@@ -25,20 +26,23 @@ nivel_1:
 
 nivel_2:
   regras_em_escala:
-    status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
+    status: completo
+    onde: "nivel_2/pipeline.py; top 10 em outputs/top10_clientes.csv"
   ferramentas:
-    status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
+    status: completo
+    onde: "nivel_2/tools.py"
   agente:
-    status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
+    status: completo
+    onde: "nivel_2/agente.py"
+    nota: "tool calling com tool_choice=auto; as ferramentas efetivamente chamadas variam por caso e estão registradas em outputs/metricas_lote.csv"
   lote:
-    status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
+    status: completo
+    onde: "outputs/pareceres.json e outputs/metricas_lote.csv"
   confronto:
-    status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
+    status: completo
+    onde: "nivel_2/confronto.py; resultado em outputs/confronto.csv"
+    nota: "80% de concordancia; as 2 divergencias analisadas em docs/DECISOES.md"
+
 
 nivel_3:
   trilha_escolhida: B
