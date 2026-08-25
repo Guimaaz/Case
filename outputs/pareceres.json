@@ -1,0 +1,296 @@
+[
+  {
+    "cliente_id": "CLI-029",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "operacoes_do_dia",
+        "argumentos": {
+          "cliente_id": "CLI-029",
+          "data": "2026-05-26"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 34.51,
+    "tokens_prompt": 4096,
+    "tokens_resposta": 1858,
+    "tokens_total": 5954,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"fracionamento\",\"red_flags\":[\"4 operações de valor elevado em 26/05/2026\",\"total do dia representa 37% do volume total do cliente\"],\"justificativa\":\"O cliente realizou quatro transações de valor elevado em um único dia, totalizando 37% do volume total, o que caracteriza fracionamento. Esse padrão pode indicar tentativa de ocultar a origem de recursos, justificando o nível de risco moderado.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "fracionamento",
+      "red_flags": [
+        "4 operações de valor elevado em 26/05/2026",
+        "total do dia representa 37% do volume total do cliente"
+      ],
+      "justificativa": "O cliente realizou quatro transações de valor elevado em um único dia, totalizando 37% do volume total, o que caracteriza fracionamento. Esse padrão pode indicar tentativa de ocultar a origem de recursos, justificando o nível de risco moderado."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-017",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "operacoes_do_dia",
+        "argumentos": {
+          "cliente_id": "CLI-017",
+          "data": "2026-03-08"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 44.12,
+    "tokens_prompt": 4002,
+    "tokens_resposta": 1824,
+    "tokens_total": 5826,
+    "resposta_bruta": "{\"nivel_risco\":\"alto\",\"tipologia_suspeita\":\"estruturação de valores\",\"red_flags\":[\"4 operações em 1 dia somando 64.673,88 BRL (≈53% do volume total)\",\"Operações acima do ticket médio/mediano\",\"Uso de múltiplos canais (TED e PIX) e tipos (saque, pagamento, transferência, depósito)\"],\"justificativa\":\"O cliente realizou 4 transações em 08/03/2026 que somam mais da metade do volume total, todas acima do ticket médio, indicando tentativa de evitar limites de transação. O uso de canais e tipos variados reforça a hipótese de estruturação de valores.\"}",
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "estruturação de valores",
+      "red_flags": [
+        "4 operações em 1 dia somando 64.673,88 BRL (≈53% do volume total)",
+        "Operações acima do ticket médio/mediano",
+        "Uso de múltiplos canais (TED e PIX) e tipos (saque, pagamento, transferência, depósito)"
+      ],
+      "justificativa": "O cliente realizou 4 transações em 08/03/2026 que somam mais da metade do volume total, todas acima do ticket médio, indicando tentativa de evitar limites de transação. O uso de canais e tipos variados reforça a hipótese de estruturação de valores."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-002",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "operacoes_do_dia",
+        "argumentos": {
+          "cliente_id": "CLI-002",
+          "data": "2026-05-01"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 58.55,
+    "tokens_prompt": 4347,
+    "tokens_resposta": 2038,
+    "tokens_total": 6385,
+    "resposta_bruta": "{\"nivel_risco\":\"alto\",\"tipologia_suspeita\":\"fracionamento\",\"red_flags\":[\"concentração de volume em um único dia\",\"operações de valor elevado em curto intervalo\",\"uso de múltiplos canais eletrônicos\",\"múltiplas contrapartes distintas\"],\"justificativa\":\"O cliente concentrou quase 60% do volume total em 4 operações de mais de 14 k BRL em um único dia, indicando tentativa de fracionamento. O uso de canais eletrônicos (Pix e TEd) facilita a movimentação rápida e pode reduzir a rastreabilidade. A presença de múltiplas contrapartes distintas reforça a hipótese de estruturação de valores.\"}",
+    "parecer": {
+      "nivel_risco": "alto",
+      "tipologia_suspeita": "fracionamento",
+      "red_flags": [
+        "concentração de volume em um único dia",
+        "operações de valor elevado em curto intervalo",
+        "uso de múltiplos canais eletrônicos",
+        "múltiplas contrapartes distintas"
+      ],
+      "justificativa": "O cliente concentrou quase 60% do volume total em 4 operações de mais de 14 k BRL em um único dia, indicando tentativa de fracionamento. O uso de canais eletrônicos (Pix e TEd) facilita a movimentação rápida e pode reduzir a rastreabilidade. A presença de múltiplas contrapartes distintas reforça a hipótese de estruturação de valores."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-003",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "operacoes_do_dia",
+        "argumentos": {
+          "cliente_id": "CLI-003",
+          "data": "2026-05-02"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 45.38,
+    "tokens_prompt": 4143,
+    "tokens_resposta": 1904,
+    "tokens_total": 6047,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"estruturação\",\"red_flags\":[\"múltiplas operações em um único dia\",\"valor total do dia representa quase metade do volume total\",\"uso de canais variados (pix, TED, cartão)\"],\"justificativa\":\"O cliente realizou quatro transações em 2026‑05‑02, totalizando quase metade do volume total, o que indica tentativa de evitar limites diários. O uso de canais diferentes (pix, TED e cartão) sugere dispersão de valores. Esses indícios apontam para uma prática de estruturação de operações.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "estruturação",
+      "red_flags": [
+        "múltiplas operações em um único dia",
+        "valor total do dia representa quase metade do volume total",
+        "uso de canais variados (pix, TED, cartão)"
+      ],
+      "justificativa": "O cliente realizou quatro transações em 2026‑05‑02, totalizando quase metade do volume total, o que indica tentativa de evitar limites diários. O uso de canais diferentes (pix, TED e cartão) sugere dispersão de valores. Esses indícios apontam para uma prática de estruturação de operações."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-014",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "historico_cliente",
+        "argumentos": {
+          "cliente_id": "CLI-014"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 35.39,
+    "tokens_prompt": 3687,
+    "tokens_resposta": 1844,
+    "tokens_total": 5531,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"valor atípico\",\"red_flags\":[\"maior operação de R$ 23 640,97\",\"ticket mediano de R$ 2 308,41\"],\"justificativa\":\"A maior operação de R$ 23 640,97 excede em mais de 10 vezes o ticket mediano de R$ 2 308,41, indicando desvio significativo. O ticket médio de R$ 7 330,00 ainda está abaixo do valor da maior operação, reforçando a suspeita de valor atípico.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "maior operação de R$ 23 640,97",
+        "ticket mediano de R$ 2 308,41"
+      ],
+      "justificativa": "A maior operação de R$ 23 640,97 excede em mais de 10 vezes o ticket mediano de R$ 2 308,41, indicando desvio significativo. O ticket médio de R$ 7 330,00 ainda está abaixo do valor da maior operação, reforçando a suspeita de valor atípico."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-023",
+    "ferramentas_chamadas": [],
+    "qtd_ferramentas": 0,
+    "rodadas_investigacao": 1,
+    "latencia_s": 36.42,
+    "tokens_prompt": 2689,
+    "tokens_resposta": 2104,
+    "tokens_total": 4793,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"transações de valor atípico\",\"red_flags\":[\"valor_atipico\"],\"justificativa\":\"O cliente possui 12 operações, com volume total de R$148.535,02 e ticket mediano de R$3.241,16. Duas operações foram sinalizadas como valor atípico, indicando que o valor dessas transações se desvia significativamente do padrão médio. Esse padrão caracteriza a tipologia de transações de valor atípico, que pode indicar tentativas de ocultar a origem de recursos.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "transações de valor atípico",
+      "red_flags": [
+        "valor_atipico"
+      ],
+      "justificativa": "O cliente possui 12 operações, com volume total de R$148.535,02 e ticket mediano de R$3.241,16. Duas operações foram sinalizadas como valor atípico, indicando que o valor dessas transações se desvia significativamente do padrão médio. Esse padrão caracteriza a tipologia de transações de valor atípico, que pode indicar tentativas de ocultar a origem de recursos."
+    },
+    "erro": null,
+    "do_cache": true,
+    "modelo": "openai/gpt-oss-20b"
+  },
+  {
+    "cliente_id": "CLI-028",
+    "modelo": "openai/gpt-oss-20b",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "historico_cliente",
+        "argumentos": {
+          "cliente_id": "CLI-028"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 5.57,
+    "tokens_prompt": 5041,
+    "tokens_resposta": 2857,
+    "tokens_total": 7898,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"valor atípico\",\"red_flags\":[\"valor atípico em 2 operações\",\"maior operação de 27.715,48 BRL, 6,25× ticket mediano\"],\"justificativa\":\"O cliente possui 12 operações, sendo 2 sinalizadas por valor atípico. A maior transação representa mais de 6 vezes o ticket mediano, indicando um desvio significativo em relação ao padrão de movimentação. Embora não haja fracionamento nem outras anomalias, o valor elevado justifica um nível de risco médio.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor atípico em 2 operações",
+        "maior operação de 27.715,48 BRL, 6,25× ticket mediano"
+      ],
+      "justificativa": "O cliente possui 12 operações, sendo 2 sinalizadas por valor atípico. A maior transação representa mais de 6 vezes o ticket mediano, indicando um desvio significativo em relação ao padrão de movimentação. Embora não haja fracionamento nem outras anomalias, o valor elevado justifica um nível de risco médio."
+    },
+    "erro": null,
+    "do_cache": false
+  },
+  {
+    "cliente_id": "CLI-013",
+    "modelo": "openai/gpt-oss-20b",
+    "ferramentas_chamadas": [],
+    "qtd_ferramentas": 0,
+    "rodadas_investigacao": 1,
+    "latencia_s": 50.61,
+    "tokens_prompt": 4189,
+    "tokens_resposta": 3791,
+    "tokens_total": 7980,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"valor atípico\",\"red_flags\":[\"valor_atipico\",\"2 operações sinalizadas\"],\"justificativa\":\"O cliente possui 10 operações, com 2 sinalizadas por valor atípico. O volume total e o ticket mediano indicam que a maioria das transações está dentro de um padrão razoável, mas as duas operações sinalizadas podem representar desvios significativos. Diante disso, a tipologia de valor atípico é identificada, justificando um nível de risco médio.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor_atipico",
+        "2 operações sinalizadas"
+      ],
+      "justificativa": "O cliente possui 10 operações, com 2 sinalizadas por valor atípico. O volume total e o ticket mediano indicam que a maioria das transações está dentro de um padrão razoável, mas as duas operações sinalizadas podem representar desvios significativos. Diante disso, a tipologia de valor atípico é identificada, justificando um nível de risco médio."
+    },
+    "erro": null,
+    "do_cache": false
+  },
+  {
+    "cliente_id": "CLI-005",
+    "modelo": "openai/gpt-oss-20b",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "historico_cliente",
+        "argumentos": {
+          "cliente_id": "CLI-005"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 66.45,
+    "tokens_prompt": 5129,
+    "tokens_resposta": 2645,
+    "tokens_total": 7774,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"transações de valor atípico\",\"red_flags\":[\"valor_atipico\",\"maior_operacao_brl\",\"operacoes_sinalizadas\"],\"justificativa\":\"O cliente possui duas operações sinalizadas como atípicas, com a maior transação atingindo R$ 30 743,97, muito acima do ticket mediano de R$ 2 144,18. Esse desvio significativo indica um padrão de movimentação de alto valor que pode estar relacionado a tentativas de lavagem de dinheiro. A presença de duas operações atípicas em um conjunto pequeno de transações reforça a necessidade de investigação adicional.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "transações de valor atípico",
+      "red_flags": [
+        "valor_atipico",
+        "maior_operacao_brl",
+        "operacoes_sinalizadas"
+      ],
+      "justificativa": "O cliente possui duas operações sinalizadas como atípicas, com a maior transação atingindo R$ 30 743,97, muito acima do ticket mediano de R$ 2 144,18. Esse desvio significativo indica um padrão de movimentação de alto valor que pode estar relacionado a tentativas de lavagem de dinheiro. A presença de duas operações atípicas em um conjunto pequeno de transações reforça a necessidade de investigação adicional."
+    },
+    "erro": null,
+    "do_cache": false
+  },
+  {
+    "cliente_id": "CLI-026",
+    "modelo": "openai/gpt-oss-20b",
+    "ferramentas_chamadas": [
+      {
+        "ferramenta": "historico_cliente",
+        "argumentos": {
+          "cliente_id": "CLI-026"
+        }
+      }
+    ],
+    "qtd_ferramentas": 1,
+    "rodadas_investigacao": 2,
+    "latencia_s": 86.26,
+    "tokens_prompt": 6706,
+    "tokens_resposta": 4245,
+    "tokens_total": 10951,
+    "resposta_bruta": "{\"nivel_risco\":\"medio\",\"tipologia_suspeita\":\"valor atípico\",\"red_flags\":[\"valor de operação >10× ticket mediano\",\"valor de operação <0,3× ticket mediano\"],\"justificativa\":\"O cliente apresentou duas operações que se desviam significativamente do ticket mediano, com a maior operação representando mais de 10 vezes o valor mediano e quase 40% do volume total, e a menor sendo menos de 30% do ticket mediano. Esses desvios indicam transações de valor atípico, que são um indicativo de possível movimentação irregular. Apesar de não haver sinais de fracionamento ou uso de espécie, a magnitude das variações justifica um nível de risco médio e requer monitoramento adicional.\"}",
+    "parecer": {
+      "nivel_risco": "medio",
+      "tipologia_suspeita": "valor atípico",
+      "red_flags": [
+        "valor de operação >10× ticket mediano",
+        "valor de operação <0,3× ticket mediano"
+      ],
+      "justificativa": "O cliente apresentou duas operações que se desviam significativamente do ticket mediano, com a maior operação representando mais de 10 vezes o valor mediano e quase 40% do volume total, e a menor sendo menos de 30% do ticket mediano. Esses desvios indicam transações de valor atípico, que são um indicativo de possível movimentação irregular. Apesar de não haver sinais de fracionamento ou uso de espécie, a magnitude das variações justifica um nível de risco médio e requer monitoramento adicional."
+    },
+    "erro": null,
+    "do_cache": false
+  }
+]

@@ -1,0 +1,11 @@
+cliente_id,nivel_risco,validou,qtd_ferramentas,ferramentas,rodadas,latencia_s,tokens_prompt,tokens_resposta,tokens_total
+CLI-029,medio,True,1,operacoes_do_dia,2,34.51,4096,1858,5954
+CLI-017,alto,True,1,operacoes_do_dia,2,44.12,4002,1824,5826
+CLI-002,alto,True,1,operacoes_do_dia,2,58.55,4347,2038,6385
+CLI-003,medio,True,1,operacoes_do_dia,2,45.38,4143,1904,6047
+CLI-014,medio,True,1,historico_cliente,2,35.39,3687,1844,5531
+CLI-023,medio,True,0,,1,36.42,2689,2104,4793
+CLI-028,medio,True,1,historico_cliente,2,5.57,5041,2857,7898
+CLI-013,medio,True,0,,1,50.61,4189,3791,7980
+CLI-005,medio,True,1,historico_cliente,2,66.45,5129,2645,7774
+CLI-026,medio,True,1,historico_cliente,2,86.26,6706,4245,10951
