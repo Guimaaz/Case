@@ -37,3 +37,11 @@ a coluna valor_brl como inteiro e depois gravava um valor decimal nela, gerando
 FutureWarning do pandas na saída. Só apareceu ao executar; corrigi com
 .astype(float) na criação da coluna
 
+**Cache sem chave de modelo.** O cache de respostas que a IA sugeriu era indexado
+apenas pelo dossiê do cliente, sem incluir o modelo. Quando troquei do 120b para
+o 20b, resultados do modelo antigo voltavam do cache como se fossem do novo, e
+eu não teria como saber qual modelo produziu qual parecer na hora de declarar isso
+no ENTREGA.yaml. Percebi ao conferir e corrigi incluindo o modelo na chave e no
+registro de cada parecer
+
+
