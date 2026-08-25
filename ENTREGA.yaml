@@ -1,7 +1,7 @@
 candidato: Gustavo Guimarães Rodrigues
 modelo_usado: openai/gpt-oss-120b
 provedor: groq
-horas_dedicadas: 4 
+horas_dedicadas: 5.5 
 
 nivel_1:
   limpeza_dados:
@@ -26,21 +26,21 @@ nivel_1:
 nivel_2:
   regras_em_escala:
     status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2"
+    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
   ferramentas:
     status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2"
+    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
   agente:
     status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2"
+    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
   lote:
     status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2"
+    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
   confronto:
     status: nao_feito
-    plano: "docs/DECISOES.md#nivel-2"
+    plano: "docs/DECISOES.md#nivel-2-o-que-faria"
 
 nivel_3:
   trilha_escolhida: B
   status: nao_feito
-  plano: "docs/DECISOES.md#nivel-3"
+  plano: "docs/DECISOES.md#nivel-3-trilha-escolhida"
