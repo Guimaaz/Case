@@ -1,0 +1,11 @@
+cliente_id,sinalizacoes,volume_total_brl,qtd_operacoes,fracionamento,valor_atipico
+CLI-029,4,191385.77,16,True,False
+CLI-017,4,121391.37,13,True,False
+CLI-002,4,107965.38,14,True,False
+CLI-003,4,102241.09,14,True,False
+CLI-014,3,80629.99,11,False,True
+CLI-023,2,148535.02,12,False,True
+CLI-028,2,88750.8,12,False,True
+CLI-013,2,81730.99,10,False,True
+CLI-005,2,64742.66,11,False,True
+CLI-026,2,54729.28,12,False,True
